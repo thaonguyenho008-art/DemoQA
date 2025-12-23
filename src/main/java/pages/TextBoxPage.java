@@ -5,54 +5,38 @@ import org.openqa.selenium.WebDriver;
 
 public class TextBoxPage extends Page {
 	// input
-	public By fullName = By.id("userName");
-	public By email = By.id("userEmail");
-	public By currentAddress = By.id("currentAddress");
-	public By permanentAddress = By.id("permanentAddress");
-	public By buttonSubmit = By.id("submit");
-    // ouput
-	public By outputFullName = By.id("userName");
-	public By outputEmail = By.id("userEmail");
-	public By ouputCurrentAddress = By.id("currentAddress");
-	public By ouputPermanentAddress = By.id("permanentAddress");
+	public By txtFullName = By.id("userName");
+	public By txtEmail = By.id("userEmail");
+	public By txtCurrentAddress = By.id("currentAddress");
+	public By txtPermanentAddress = By.id("permanentAddress");
+	public By btnSubmit = By.id("submit");
+
+	// ouput
+	public By lblName = By.id("name");
+	public By lblEmail = By.id("email");
+	public By lblCurrentAddress = By.xpath("//p[@id='currentAddress']");
+	public By lblPermanentAddress = By.xpath("//p[@id='permanentAddress']");
+
 	public TextBoxPage(WebDriver driver) {
 		super(driver);
 	}
 
-	public void inputFullName(String valueFullName) {
-		dr.findElement(fullName).sendKeys(valueFullName);
+	public void inputData(String fullName, String email, String currentAddress, String permanentAddress) {
+		testBase.inputText(txtFullName, fullName);
+		testBase.inputText(txtEmail, email);
+		testBase.inputText(txtCurrentAddress, currentAddress);
+		testBase.inputText(txtPermanentAddress, permanentAddress);
+		testBase.scrollToElement(btnSubmit);
+		testBase.clickButton(btnSubmit);
 	}
 
-	public void inputEmail(String valueinputEmail) {
-		dr.findElement(email).sendKeys(valueinputEmail);
-	}
+	public String getActualText(By locator) {
+		String result = "";
+		String fullText = testBase.getTextByLocator(locator);
+		int index = fullText.indexOf(":");
+		result = fullText.substring(index+1);
+		return result;
 
-	public void inputCurrentAddress(String valueinputCurrentAddress) {
-		dr.findElement(currentAddress).sendKeys(valueinputCurrentAddress);
-	}
-
-	public void inputPermanentAddress(String valuepermanentAddress) {
-		dr.findElement(permanentAddress).sendKeys(valuepermanentAddress);
-	}
-	
-	public void clickSubmit() {
-		dr.findElement(buttonSubmit).click();
-	}
-	
-	public String getFullName() {
-		return dr.findElement(outputFullName).getText();
-	}
-	
-	public String getEmail() {
-		return dr.findElement(outputEmail).getText();
-	}
-	
-	public String getCurrentAddress() {
-		return dr.findElement(ouputCurrentAddress).getText();
-	}
-	
-	public String getPermanentAddress() {
-		return dr.findElement(ouputPermanentAddress).getText();
 	}
 
 }

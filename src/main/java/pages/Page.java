@@ -2,11 +2,16 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
+import common.TestBase;
+
 public class Page {
-	public WebDriver dr;
+	public TestBase testBase = new TestBase();
+	protected WebDriver dr;
 
 	public Page(WebDriver driver) {
-		this.dr = driver;
+		testBase.webDriver = driver; 
+		this.dr = testBase.webDriver;
 	}
+	
 
 }
