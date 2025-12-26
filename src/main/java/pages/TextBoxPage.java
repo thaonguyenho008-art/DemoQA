@@ -34,7 +34,17 @@ public class TextBoxPage extends Page {
 		String result = "";
 		String fullText = testBase.getTextByLocator(locator);
 		int index = fullText.indexOf(":");
-		result = fullText.substring(index+1);
+		result = fullText.substring(index + 1);
+		return result;
+
+	}
+
+	public boolean isEmailChecked(By locator) {
+		boolean result = false;
+		String classValue = testBase.getAttribute(locator, "class");
+		if (classValue.contains("field-error")) {
+			result = true;
+		}
 		return result;
 
 	}
