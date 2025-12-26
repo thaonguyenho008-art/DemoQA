@@ -52,6 +52,14 @@ public class TestBase {
 		}
 		return result;
 	}
+//
+	public String getAttribute(By locator, String attribute) {
+		WebElement webElement=null;
+		if(isDisplayed(locator, 0)) {
+			 webElement = webDriver.findElement(locator);
+		}
+		return webElement.getAttribute(attribute);
+	}
 
 	/**
 	 * check element displayed in timeout-second
