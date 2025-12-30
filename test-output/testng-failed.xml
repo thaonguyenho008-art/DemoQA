@@ -5,8 +5,8 @@
     <classes>
       <class name="tests.TextBoxTest">
         <methods>
+          <include name="submitDataSuccesfullyPracticeForm"/>
           <include name="openWeb"/>
-          <include name="validateEmail1"/>
         </methods>
       </class> <!-- tests.TextBoxTest -->
     </classes>

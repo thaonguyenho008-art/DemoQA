@@ -1,6 +1,8 @@
 package common;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -52,11 +54,12 @@ public class TestBase {
 		}
 		return result;
 	}
+
 //
 	public String getAttribute(By locator, String attribute) {
-		WebElement webElement=null;
-		if(isDisplayed(locator, 0)) {
-			 webElement = webDriver.findElement(locator);
+		WebElement webElement = null;
+		if (isDisplayed(locator, 0)) {
+			webElement = webDriver.findElement(locator);
 		}
 		return webElement.getAttribute(attribute);
 	}
@@ -78,4 +81,44 @@ public class TestBase {
 		return result;
 
 	}
+
+
+	public void selectRadioBtn(By locator, String values) {
+		List<WebElement> radios = webDriver.findElements(locator);
+		for (WebElement radio : radios) {
+			if (radio.getAttribute("value").equalsIgnoreCase(values)) {
+				if (!radio.isSelected()) {
+					((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", radio);
+				}
+				break;
+			}
+		}
+	}
+
+	public void selectCheckBoxBtn(By locator, List<String> values) {
+		List<WebElement> checkboxes = webDriver.findElements(locator);
+		for (WebElement checkbox : checkboxes) {
+			 String labelText = checkbox.findElement(By.xpath("./following-sibling::label")).getText().trim();
+			if (values.contains(labelText)) {
+				if (!checkbox.isSelected()) {
+					((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", checkbox);
+				}
+			}
+		}
+	}
+
+	public List<String> getTableValues(By locator) {
+		WebElement table = webDriver.findElement(locator);
+		List<WebElement> rows = table.findElements(By.xpath(".//tbody/tr"));
+		List<String> values = new ArrayList<>();
+		for (WebElement row : rows) {
+			List<WebElement> cells = row.findElements(By.tagName("td"));
+			if (cells.size() >= 2) {
+				values.add(cells.get(1).getText().trim());
+			}
+		}
+		return values;
+
+	}
+
 }

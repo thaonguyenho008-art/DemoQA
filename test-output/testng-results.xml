@@ -1,68 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-26T21:50:06 ICT" name="Default suite" finished-at="2025-12-26T21:50:30 ICT" duration-ms="23922">
+  <suite started-at="2025-12-30T15:21:14 ICT" name="Default suite" finished-at="2025-12-30T15:21:35 ICT" duration-ms="21214">
     <groups>
     </groups>
-    <test started-at="2025-12-26T21:50:06 ICT" name="Default test" finished-at="2025-12-26T21:50:30 ICT" duration-ms="23922">
+    <test started-at="2025-12-30T15:21:14 ICT" name="Default test" finished-at="2025-12-30T15:21:35 ICT" duration-ms="21214">
       <class name="tests.TextBoxTest">
-        <test-method is-config="true" signature="openWeb()[pri:0, instance:tests.TextBoxTest@3857f613]" started-at="2025-12-26T21:50:06 ICT" name="openWeb" finished-at="2025-12-26T21:50:15 ICT" duration-ms="8974" status="PASS">
+        <test-method is-config="true" signature="openWeb()[pri:0, instance:tests.TextBoxTest@229f66ed]" started-at="2025-12-30T15:21:14 ICT" name="openWeb" finished-at="2025-12-30T15:21:27 ICT" duration-ms="12400" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openWeb -->
-        <test-method signature="validateEmail1(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.TextBoxTest@3857f613]" started-at="2025-12-26T21:50:16 ICT" name="validateEmail1" data-provider="EmailValidation" finished-at="2025-12-26T21:50:25 ICT" duration-ms="9157" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Ho Thao Nguyen]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[thaonguyen1108gmail.com]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Ha Noi]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Nghe An]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="submitDataSuccesfullyPracticeForm()[pri:0, instance:tests.TextBoxTest@229f66ed]" started-at="2025-12-30T15:21:27 ICT" name="submitDataSuccesfullyPracticeForm" finished-at="2025-12-30T15:21:35 ICT" duration-ms="8720" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validateEmail1 -->
-        <test-method signature="validateEmail1(java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.TextBoxTest@3857f613]" started-at="2025-12-26T21:50:25 ICT" name="validateEmail1" data-provider="EmailValidation" finished-at="2025-12-26T21:50:30 ICT" duration-ms="5567" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Ho Thao Nguyen]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[thaonguyen1108@]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Ha Noi]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[Nghe An]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- validateEmail1 -->
+        </test-method> <!-- submitDataSuccesfullyPracticeForm -->
       </class> <!-- tests.TextBoxTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
