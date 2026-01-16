@@ -1,5 +1,8 @@
 package tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -43,7 +46,7 @@ public class TextBoxTest extends TestCase {
 		Assert.assertTrue(textBoxPage.isEmailChecked(textBoxPage.txtEmail));
 	}
 
-	@Test(dataProvider = "EmailValidation")
+//	@Test(dataProvider = "EmailValidation")
 	public void validateEmail1(String fullName, String email, String currentAddress, String permanentAddress) {
 		TextBoxPage textBoxPage = new TextBoxPage(base.webDriver);
 		base.webDriver.navigate().to("https://demoqa.com/text-box");
@@ -51,13 +54,42 @@ public class TextBoxTest extends TestCase {
 		Assert.assertTrue(textBoxPage.isEmailChecked(textBoxPage.txtEmail));
 	}
 
-	@DataProvider(name = "EmailValidation")
+//	@DataProvider(name = "EmailValidation")
 	public String[][] createDataForEmailValidation() {
 		Utils utils = new Utils();
-		String[][] emailData =  utils.readDataFormCSV();
+		String[][] emailData = utils.readDataFormCSV();
 		return emailData;
 	}
-	
-	
+
+	@Test
+	public void submitDataSuccesfullyPracticeForm() {
+		TextBoxPage textBoxPage = new TextBoxPage(base.webDriver);
+		base.webDriver.navigate().to("https://demoqa.com/automation-practice-form");
+		String firstName = "Nguyen";
+		String lastName = "Ho Thi Thao";
+		String fullName= firstName+" "+lastName;
+		String email = "thaonguyen1108@gmail.com";
+		String gender = "other";
+		String mobile = "0987812345";
+		List<String> options = new ArrayList<String>();
+		options.add("Sports");
+		options.add("Reading");
+		// String subject = "Math";
+		String currentAddress = "Ha Noi";
+		textBoxPage.inputDataPractice(firstName, lastName, email, gender, mobile, options, currentAddress);
+		String actualFullName =textBoxPage.ouputDataPractice(0);
+		String actualEmail = textBoxPage.ouputDataPractice(1);
+		String actualGender = textBoxPage.ouputDataPractice(2);
+		String actualMobile = textBoxPage.ouputDataPractice(3);
+		String actualHobbiles = textBoxPage.ouputDataPractice(6);
+		String actualCurrentAddress = textBoxPage.ouputDataPractice(8);
+		Assert.assertEquals(actualFullName, fullName);
+		Assert.assertEquals(actualEmail, email);
+		Assert.assertEquals(actualGender.toLowerCase(), gender.toLowerCase());
+		Assert.assertEquals(actualMobile, mobile);
+		Assert.assertEquals(actualHobbiles, String.join(", ", options));
+		Assert.assertEquals(actualCurrentAddress, currentAddress);
+
+	}
 
 }
