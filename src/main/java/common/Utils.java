@@ -9,9 +9,9 @@ import com.opencsv.CSVReader;
 
 public class Utils {
 
-	public String[][] readDataFormCSV() {
+	public String[][] readDataFormCSV(String dataFileName) {
 		String[][] dataTable = null;
-		String csvFilePath = System.getProperty("user.dir")+"\\TestCase\\TestData.csv";
+		String csvFilePath = System.getProperty("user.dir")+"\\TestCase\\"+ dataFileName;
 		FileReader fileReader;
 		try {
 			fileReader = new FileReader(csvFilePath);
