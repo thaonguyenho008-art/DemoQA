@@ -32,7 +32,7 @@ public class TextBoxPage extends Page {
 		testBase.inputText(txtCurrentAddress, currentAddress);
 		testBase.inputText(txtPermanentAddress, permanentAddress);
 		testBase.scrollToElement(btnSubmit);
-		testBase.clickButton(btnSubmit);
+		testBase.clickOnElement(btnSubmit);
 	}
 
 	public String getActualText(By locator) {
@@ -55,37 +55,37 @@ public class TextBoxPage extends Page {
 
 	// pratice form
 	// input
-	public By txtFirstNamePractice = By.id("firstName");
-	public By txtLastNamePractice = By.id("lastName");
-	public By txtEmailPractice = By.id("userEmail");
-	public By txtgender = By.name("gender");
-	public By txtMobile = By.id("userNumber");
-	public By txthobbies = By.cssSelector("input[type='checkbox']");
-	public By txtCurrentAddressPractice = By.id("currentAddress");
-	public By btnSubmitPractice = By.id("submit");
+//	public By txtFirstNamePractice = By.id("firstName");
+//	public By txtLastNamePractice = By.id("lastName");
+//	public By txtEmailPractice = By.id("userEmail");
+//	public By txtgender = By.xpath("gender");
+//	public By txtMobile = By.id("userNumber");
+//	public By txthobbies = By.cssSelector("input[type='checkbox']");
+//	public By txtCurrentAddressPractice = By.id("currentAddress");
+//	public By btnSubmitPractice = By.id("submit");
+//
+//	// ouput
+//	public By lblTable = By.cssSelector("table.table-dark");
 
-	// ouput
-	public By lblTable = By.cssSelector("table.table-dark");
+//	public void inputDataPractice(String firstName, String lastName, String email, String gender, String mobile,
+//			List<String> values, String adderss) {
+//		testBase.inputText(txtFirstNamePractice, firstName);
+//		testBase.inputText(txtLastNamePractice, lastName);
+//		testBase.inputText(txtEmailPractice, email);
+//		testBase.selectRadioBtn(txtgender, gender); 
+//		testBase.selectCheckBoxBtn(txthobbies, values);
+//		testBase.inputText(txtMobile, mobile);
+//		testBase.inputText(txtCurrentAddressPractice, adderss);
+//		testBase.scrollToElement(btnSubmit);
+//		testBase.clickButton(btnSubmitPractice);
+//	}
 
-	public void inputDataPractice(String firstName, String lastName, String email, String gender, String mobile,
-			List<String> values, String adderss) {
-		testBase.inputText(txtFirstNamePractice, firstName);
-		testBase.inputText(txtLastNamePractice, lastName);
-		testBase.inputText(txtEmailPractice, email);
-		testBase.selectRadioBtn(txtgender, gender);
-		testBase.selectCheckBoxBtn(txthobbies, values);
-		testBase.inputText(txtMobile, mobile);
-		testBase.inputText(txtCurrentAddressPractice, adderss);
-		testBase.scrollToElement(btnSubmit);
-		testBase.clickButton(btnSubmitPractice);
-	}
-
-	public String ouputDataPractice(int n) {
-		
-		List<String> values = testBase.getTableValues(lblTable);
-		String result =values.get(n);
-		return result;
-
-	}
+//	public String ouputDataPractice(int n) {
+//		
+//		List<String> values = testBase.getTableValues(lblTable);
+//		String result =values.get(n);
+//		return result;
+//
+//	}
 
 }

@@ -2,15 +2,18 @@ package common;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestBase {
@@ -35,7 +38,7 @@ public class TestBase {
 		}
 	}
 
-	public void clickButton(By locator) {
+	public void clickOnElement(By locator) {
 		if (isDisplayed(locator, 0)) {
 			webDriver.findElement(locator).click();
 		}
@@ -82,43 +85,49 @@ public class TestBase {
 
 	}
 
-
-	public void selectRadioBtn(By locator, String values) {
-		List<WebElement> radios = webDriver.findElements(locator);
-		for (WebElement radio : radios) {
-			if (radio.getAttribute("value").equalsIgnoreCase(values)) {
-				if (!radio.isSelected()) {
-					((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", radio);
-				}
-				break;
-			}
+	public void selectRadioBtn(String xpath, String text) {
+		String newXpath = xpath.replace("@param", text);
+		By locator = By.xpath(newXpath);
+		if (isDisplayed(locator, 0)) {
+			clickOnElement(locator);
 		}
 	}
-
-	public void selectCheckBoxBtn(By locator, List<String> values) {
-		List<WebElement> checkboxes = webDriver.findElements(locator);
-		for (WebElement checkbox : checkboxes) {
-			 String labelText = checkbox.findElement(By.xpath("./following-sibling::label")).getText().trim();
-			if (values.contains(labelText)) {
-				if (!checkbox.isSelected()) {
-					((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", checkbox);
-				}
-			}
+	
+	public void selectDropDownByVisibleText(By locator, String text) {
+		WebElement dropDownElement = webDriver.findElement(locator);
+		if(isDisplayed(locator, 0)) {
+			Select selectElement = new Select(dropDownElement);
+			selectElement.selectByVisibleText(text);
 		}
 	}
-
-	public List<String> getTableValues(By locator) {
-		WebElement table = webDriver.findElement(locator);
-		List<WebElement> rows = table.findElements(By.xpath(".//tbody/tr"));
-		List<String> values = new ArrayList<>();
-		for (WebElement row : rows) {
-			List<WebElement> cells = row.findElements(By.tagName("td"));
-			if (cells.size() >= 2) {
-				values.add(cells.get(1).getText().trim());
-			}
+	
+	/**
+	 * 
+	 * @param locator
+	 * @param value: multiple values which are separated by comma, E.g: "Physics, Math"
+	 */
+	public void inputCombobox(By locator, String value) {
+		String[] values = value.split(",");
+		for(String element : values) {
+			inputText(locator, element.trim());
+			inputText(locator, Keys.ENTER);
 		}
-		return values;
 
 	}
-
+	
+	/**
+	 * 
+	 * @param locator
+	 * @param value multiple values which are separated by comma, E.g: "Sports,Reading,Music"
+	 */
+	public void selectCheckBoxBtn(String xpathWithParam, String value) {
+		String[] values = value.split(",");
+		for(String element: values) {
+			String newXpath = xpathWithParam.replace("@param", element.trim());
+			By locator = By.xpath(newXpath);
+			clickOnElement(locator);
+		}
+		
+	
+	}
 }
