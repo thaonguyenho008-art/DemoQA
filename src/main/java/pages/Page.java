@@ -13,5 +13,9 @@ public class Page {
 		this.dr = testBase.webDriver;
 	}
 	
+	public void goToPage(String url) {
+		testBase.webDriver.navigate().to(url);
+
+	}
 
 }

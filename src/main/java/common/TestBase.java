@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -92,42 +93,71 @@ public class TestBase {
 			clickOnElement(locator);
 		}
 	}
-	
+
 	public void selectDropDownByVisibleText(By locator, String text) {
 		WebElement dropDownElement = webDriver.findElement(locator);
-		if(isDisplayed(locator, 0)) {
+		if (isDisplayed(locator, 0)) {
 			Select selectElement = new Select(dropDownElement);
 			selectElement.selectByVisibleText(text);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param locator
-	 * @param value: multiple values which are separated by comma, E.g: "Physics, Math"
+	 * @param value:  multiple values which are separated by comma, E.g: "Physics,
+	 *                Math"
 	 */
 	public void inputCombobox(By locator, String value) {
 		String[] values = value.split(",");
-		for(String element : values) {
+		for (String element : values) {
 			inputText(locator, element.trim());
 			inputText(locator, Keys.ENTER);
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @param locator
-	 * @param value multiple values which are separated by comma, E.g: "Sports,Reading,Music"
+	 * @param value   multiple values which are separated by comma, E.g:
+	 *                "Sports,Reading,Music"
 	 */
 	public void selectCheckBoxBtn(String xpathWithParam, String value) {
 		String[] values = value.split(",");
-		for(String element: values) {
+		for (String element : values) {
 			String newXpath = xpathWithParam.replace("@param", element.trim());
 			By locator = By.xpath(newXpath);
 			clickOnElement(locator);
 		}
-		
-	
+
 	}
+
+	public String getAlertMessgae(WebDriver dr) {
+		String result = "";
+		Alert alert = dr.switchTo().alert();
+		result = alert.getText();
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param timeToSecond: time for alert displayed after clicking 
+	 * @param dr
+	 * @return
+	 */
+	public String getAlertMessageWithTime(int timeToSecond,WebDriver dr) {
+		String result = "";
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(timeToSecond));
+		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+		Alert alerts = dr.switchTo().alert();
+		result = alerts.getText();
+		return result;
+	}
+	
+	public void clickConfirmOnAlert(WebDriver dr) {
+		Alert alert = dr.switchTo().alert();
+		alert.accept();
+	}
+	
 }
